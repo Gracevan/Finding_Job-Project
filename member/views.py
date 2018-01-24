@@ -1,14 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 import datetime
-from .models import Member
+from .models import Member,MemberSkills
 from django.contrib.staticfiles import finders
 
 def index(request):
     title = '會員管理'
 
     # todo 讀取會員資料傳給index.html
-    member = Member.objects.all()
+    member = Member.objects.all()  # 此傳進來是list or set，用memb.id/ memb.username等db裡面的col名稱接
+    # print(type(member)) //queryset
     return render(request,'member/index.html',locals())
 
 def create(request):
@@ -16,10 +17,16 @@ def create(request):
         username = request.POST["username"]
         password = request.POST["password"]
         useremail = request.POST["useremail"]
-        userbirth = request.POSt["userbirth"]
+        userbirth = request.POST["userbirth"]
 
-        #todo 接收到的會員資料寫進資料庫
-        Member.objects.create(username = username, password = password, useremail = useremail, userbirth = userbirth)
+        skills = request.POST.getlist("skills") #取得skill check box的list ['python','mysql']
+
+
+        #todo 接收到的會員資料寫進資料庫，並放在member變數裡
+        member = Member.objects.create(username = username, password = password, useremail = useremail, userbirth = userbirth)
+
+        for skill in skills:
+            MemberSkills.objects.create(member=member, skillname=skill)
     
         #todo 新增完後轉到http://localhost:8000/member
         return redirect('/member')
@@ -33,12 +40,20 @@ def update(request,id):
         useremail = request.POST["useremail"]
         userbirth = request.POSt["userbirth"]
 
+        skills=request.POST.getlist("skills") #取得skill check box的list ['python','mysql']
+
         #todo 修改資料庫中的會員資料
-        member = Member.obect.get(id=int(id))
+        member = Member.objects.get(id=int(id))
         member.username = membername
         member.useremail = useremail
         member.userbirth = userbirth
         member.save()
+
+        # skills = MemberSkills.objects.get(id=int(id))
+        # for skill in skills.memberskills_set.all():
+        #     if skill.member != objects.member:
+        #         skill.member = objects.member
+        #         skill.save()
 
         #todo 修改完成後轉到http://localhost:8000/member
         return redirect("/member")
@@ -46,6 +61,8 @@ def update(request,id):
     title = '會員修改'
     #todo 根據會員編號取得會員資料傳給update.html
     member = Member.objects.get(id=int(id))
+    # skills = MemberSkills.objects.get(id=int(id))
+    # memeberlist = memberskills_set.all(id=int(id))
     return render(request,'member/update.html',locals())
 
 

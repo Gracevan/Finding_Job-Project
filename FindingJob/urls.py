@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("",include('findjob.urls')),
     path("member/",include('member.urls')),
+    path("company/",include('company.urls')),
 ]+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

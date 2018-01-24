@@ -10,3 +10,11 @@ class Member(models.Model):
 class Meta:
     db_table = "member"
 
+
+class MemberSkills(models.Model):
+    skillname = models.CharField(max_length=100)
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+
+class Meta:
+    db_table = "skills"
+

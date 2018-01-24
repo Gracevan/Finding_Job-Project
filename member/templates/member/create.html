@@ -1,4 +1,68 @@
-{% extends 'base.html' %}
-{% block content %}
-<h2>create<h2>
+{% extends 'base.html' %} {% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group row">
+        <label for="username" class="col-sm-2 col-form-label">姓名</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="username" id="username" placeholder="User name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">密碼</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="useremail" class="col-sm-2 col-form-label">電子郵件</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" name="useremail" id="useremail" placeholder="User Email">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="userbirth" class="col-sm-2 col-form-label">生日</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" name="userbirth" id="userbirth" placeholder="Birthday">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="userbirth" class="col-sm-2 col-form-label">技能</label>
+        <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="skills" id="skill1" value="python">
+                <label class="form-check-label" for="skill1">python</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="skills" id="skill2" value="django">
+                <label class="form-check-label" for="skill2">django</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="skills" id="skill3" value="mysql">
+                <label class="form-check-label" for="skill3">mysql</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="skills" id="skill4" value="javascript">
+                <label class="form-check-label" for="skill4">javascript</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="skills" id="skill5" value="jquery">
+                <label class="form-check-label" for="skill5">jquery</label>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="form-group row">
+        <div class="col-sm-10 offset-md-2">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-bath" aria-hidden="true"></i> 新增</button>
+        </div>
+    </div>
+</form>
 {% endblock %}

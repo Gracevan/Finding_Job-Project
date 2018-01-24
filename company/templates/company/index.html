@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+{% block content %}
+<a href="{% url "company:create" %}" class="btn btn-primary mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i> 公司新增</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>公司名</th>
+            <th>電子郵件</th>
+            <th>職位</th>
+            <th>技能</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for company in companies %}
+            
+            <tr> 
+                    <td>{{company.id}}</td>
+                    <td>{{company.username}}</td>
+                    <td>{{company.useremail}}</td>
+                    <td>{{company.userbirth}}</td>
+                    <td>
+                        {% for companyskill in company.companyskills_set.all %}
+                            {{companyskill.skillname}}
+                        {% endfor %}
+         
+        
+                    <td>
+                        <a href="{% url "company:update" company.id %}" class="btn btn-info mr-2">修改</a>
+                        <a href="{% url "company:delete" company.id %}" class="btn btn-danger">刪除</a>
+                    </td>
+                </tr>
+                 {% endfor %}
+    
+    </tbody>
+</table>
+{% endblock %}

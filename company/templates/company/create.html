@@ -1,41 +1,33 @@
-{% extends 'base.html'%} {% block content %}
+{% extends 'base.html' %} {% block content %}
 <form method="POST">
     {% csrf_token %}
     <div class="form-group row">
-        <label for="username" class="col-sm-2 col-form-label">姓名</label>
+        <label for="companyname" class="col-sm-2 col-form-label">公司</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="username" id="username" placeholder="User Name" value="{{member.username}}">
+            <input type="text" class="form-control" name="companyname" id="companyname" placeholder="Company name">
         </div>
     </div>
     <div class="form-group row">
-        <label for="useremail" class="col-sm-2 col-form-label">電子郵件</label>
+        <label for="password" class="col-sm-2 col-form-label">密碼</label>
         <div class="col-sm-10">
-            <input type="email" class="form-control" name="useremail" id="useremail" placeholder="User Email" value="{{member.useremail}}">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
         </div>
     </div>
     <div class="form-group row">
-        <label for="userbirth" class="col-sm-2 col-form-label">生日</label>
+        <label for="companyemail" class="col-sm-2 col-form-label">電子郵件</label>
         <div class="col-sm-10">
-            <input type="date" class="form-control" name="userbirth" id="userbirth" placeholder="Birthday" value="{{member.userbirth | date:'Y-m-d'}}">
+            <input type="email" class="form-control" name="companyemail" id="companyemail" placeholder="Company Email">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="position" class="col-sm-2 col-form-label">職位</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" name="position" id="position" placeholder="Position">
         </div>
     </div>
 
-    <!-- <div class="form-group row">
-            <label for="skillnane" class="col-sm-2 col-form-label">skillnane</label>
-            <div class="col-sm-10">
-         -->
-<!--         
-                {% for skill in member.memberskills_set.all %}
-                  {{skill.skillname}}                                  
-                {% if skill.0 == python %}
-             <input class="form-check-input" type="checkbox" name="skills" id="skill1" value="python" checked>
-               {% else %}
-               <input class="form-check-input" type="checkbox" name="skills" id="skill1" value="python">
-              {% endif %}
-              {% endfor %} -->
-
-    <div class="form-group row"> 
-           <label for="userbirth" class="col-sm-2 col-form-label">技能</label>
+    <div class="form-group row">
+        <label for="userbirth" class="col-sm-2 col-form-label">技能</label>
         <div class="col-sm-10">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="skills" id="skill1" value="python">
@@ -58,14 +50,18 @@
                 <label class="form-check-label" for="skill5">jquery</label>
             </div>
         </div>
-    </div>    
-           
+    </div>
+
+
+
+
+
 
 
     <div class="form-group row">
         <div class="col-sm-10 offset-md-2">
             <button type="submit" class="btn btn-primary">
-                <i class="fa fa-bath" aria-hidden="true"></i> 修改</button>
+                <i class="fa fa-bath" aria-hidden="true"></i> 新增</button>
         </div>
     </div>
 </form>
