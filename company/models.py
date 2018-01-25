@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Company(models.Model):
     companyname = models.CharField(max_length=20,null=False)
-    password = models.CharField(max_length=10,null=False)
+    content = models.CharField(max_length=100,null=False)
     companyemail = models.EmailField(max_length=100,blank=True)
     position = models.CharField(max_length=100,null=False)
 

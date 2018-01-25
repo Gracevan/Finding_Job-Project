@@ -1,13 +1,13 @@
 {% extends 'base.html'%}
 {% block content %}
 <a href="{% url "company:create" %}" class="btn btn-primary mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i> 公司新增</a>
-<table class="table">
+<table class="table" id="job">
     <thead>
         <tr>
             <th>ID</th>
             <th>公司名</th>
-            <th>電子郵件</th>
             <th>職位</th>
+            <th>工作內容</th>
             <th>技能</th>
             <th></th>
         </tr>
@@ -17,12 +17,12 @@
             
             <tr> 
                     <td>{{company.id}}</td>
-                    <td>{{company.username}}</td>
-                    <td>{{company.useremail}}</td>
-                    <td>{{company.userbirth}}</td>
+                    <td>{{company.companyname}}</td>
+                    <td>{{company.position}}</td>
+                    <td>{{company.content}}</td>
                     <td>
                         {% for companyskill in company.companyskills_set.all %}
-                            {{companyskill.skillname}}
+                            {{companyskill.companyskill}}
                         {% endfor %}
          
         
@@ -35,4 +35,11 @@
     
     </tbody>
 </table>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready(function(){
+    $('#job').DataTable();
+});
+</script>
 {% endblock %}

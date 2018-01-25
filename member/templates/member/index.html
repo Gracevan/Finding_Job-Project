@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 {% block content %}
 <a href="{% url "member:create" %}" class="btn btn-primary mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i> 會員新增</a>
-<table class="table">
+<table class="table" id="employee">
     <thead>
         <tr>
             <th>ID</th>
@@ -35,4 +35,12 @@
     
     </tbody>
 </table>
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function(){
+    $('#employee').DataTable();
+});
+</script>
 {% endblock %}

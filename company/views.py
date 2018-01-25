@@ -8,30 +8,31 @@ def index(request):
     title = '公司管理'
 
     # todo 讀取會員資料傳給index.html
-    company = Company.objects.all()  # 此傳進來是list or set，用memb.id/ memb.username等db裡面的col名稱接
+    companies = Company.objects.all()  # 此傳進來是list or set，用memb.id/ memb.username等db裡面的col名稱接
     # print(type(member)) //queryset
     return render(request,'company/index.html',locals())
 
 def create(request):
     if request.method == 'POST':
         companyname = request.POST["companyname"]
-        password = request.POST["password"]
-        companyemail = request.POST["companyemail"]
         position = request.POST["position"]
+        companyemail = request.POST["companyemail"]
+        content = request.POST["content"]
+        
 
-        companyskills=request.POST.getlist("companyskills") #取得skill check box的list ['python','mysql']
+        skills = request.POST.getlist("skills") #取得skill check box的list ['python','mysql']
 
 
         #todo 接收到的會員資料寫進資料庫，並放在company變數裡
-        company = Company.objects.create(companyname = companyname, password = password, companyemail = companyemail, position = position)
-        for skill in companyskills:
-            MemberSkills.objects.create(company=company, companyskills=skill)
+        company = Company.objects.create(companyname = companyname,content = content, companyemail = companyemail, position = position)
+        for skill in skills:
+            CompanySkills.objects.create(company=company, companyskill=skill)
     
         #todo 新增完後轉到http://localhost:8000/company
-        return redirect('/member')
+        return redirect('/company')
 
     title = '公司新增'
-    return render(request,'member/create.html',locals())
+    return render(request,'company/create.html',locals())
 
 def update(request,id):
     if request.method == 'POST':
@@ -43,7 +44,7 @@ def update(request,id):
         company = Company.objects.get(id=int(id))
         company.companyname = companyname
         company.companyemail = companyemail
-        company.companybirth = companybirth
+        company.position = position
         company.save()
 
         #todo 修改完成後轉到http://localhost:8000/company
@@ -51,7 +52,7 @@ def update(request,id):
 
     title = '公司修改'
     #todo 根據會員編號取得會員資料傳給update.html
-    cpmpany = Conmpany.objects.get(id=int(id))
+    company = Conmpany.objects.get(id=int(id))
     return render(request,'company/update.html',locals())
 
 
