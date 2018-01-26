@@ -38,22 +38,22 @@ def update(request,id):
     if request.method == 'POST':
         username = request.POST["username"]
         useremail = request.POST["useremail"]
-        userbirth = request.POSt["userbirth"]
+        userbirth = request.POST["userbirth"]
 
-        skills=request.POST.getlist("skills") #取得skill check box的list ['python','mysql']
+        skills = request.POST.getlist("skills") #取得skill check box的list ['python','mysql']
 
         #todo 修改資料庫中的會員資料
         member = Member.objects.get(id=int(id))
-        member.username = membername
+        member.username = username
         member.useremail = useremail
         member.userbirth = userbirth
         member.save()
 
-        # skills = MemberSkills.objects.get(id=int(id))
-        # for skill in skills.memberskills_set.all():
-        #     if skill.member != objects.member:
-        #         skill.member = objects.member
-        #         skill.save()
+        # 修改skillname欄位中的資料 
+        # member.skillname = skillname        
+        # print(skillname)       
+        # print(skills)
+        
 
         #todo 修改完成後轉到http://localhost:8000/member
         return redirect("/member")
@@ -62,6 +62,9 @@ def update(request,id):
     #todo 根據會員編號取得會員資料傳給update.html
     member = Member.objects.get(id=int(id))
     # skills = MemberSkills.objects.get(id=int(id))
+    
+    
+    # print(member)
     # memeberlist = memberskills_set.all(id=int(id))
     return render(request,'member/update.html',locals())
 

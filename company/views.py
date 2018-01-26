@@ -38,7 +38,9 @@ def update(request,id):
     if request.method == 'POST':
         companyname = request.POST["companyname"]
         companyemail = request.POST["companyemail"]
-        position = request.POSt["positoin"]
+        position = request.POST["position"]
+        
+        skills = request.POST.getlist("skills") #取得skill check box的list ['python','mysql']
 
         #todo 修改資料庫中的會員資料
         company = Company.objects.get(id=int(id))
@@ -47,12 +49,16 @@ def update(request,id):
         company.position = position
         company.save()
 
+        #修改companyskill中欄位的資料   
+        # skills.companyskill = companyskill
+        # skills.save()
+
         #todo 修改完成後轉到http://localhost:8000/company
-        return redirect("company")
+        return redirect("/company")
 
     title = '公司修改'
     #todo 根據會員編號取得會員資料傳給update.html
-    company = Conmpany.objects.get(id=int(id))
+    company = Company.objects.get(id=int(id))
     return render(request,'company/update.html',locals())
 
 

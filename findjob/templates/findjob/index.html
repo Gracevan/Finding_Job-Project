@@ -1,4 +1,119 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>find my job<h2>
+
+
+<table class="table dataTable no-footer" id="job" role="grid" aria-describedby="job_info">
+    <thead>
+        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="job" rowspan="1" colspan="1" aria-sort="ascending" aria-label="ID: activate to sort column descending" style="width: 17px;">ID</th><th class="sorting" tabindex="0" aria-controls="job" rowspan="1" colspan="1" aria-label="公司名: activate to sort column ascending" style="width: 91px;">公司名</th><th class="sorting" tabindex="0" aria-controls="job" rowspan="1" colspan="1" aria-label="職位: activate to sort column ascending" style="width: 227px;">職位</th><th class="sorting" tabindex="0" aria-controls="job" rowspan="1" colspan="1" aria-label="工作內容: activate to sort column ascending" style="width: 406px;">工作內容</th><th class="sorting" tabindex="0" aria-controls="job" rowspan="1" colspan="1" aria-label="技能: activate to sort column ascending" style="width: 61px;">技能</th><th class="sorting" tabindex="0" aria-controls="job" rowspan="1" colspan="1" aria-label=": activate to sort column ascending" style="width: 50px;"></th></tr>
+    </thead>
+    <tbody>
+            
+       
+                 
+   <tr>
+        <td>{{company.id}}</td>
+        <td>{{company.companyname}}</td>
+        <td>{{company.position}}</td>
+        <td>{{company.content}}</td>
+        <td>
+            {% for companyskill in company.companyskills_set.all %}
+                {{companyskill.companyskill}}
+            {% endfor %}
+
+
+        <td>
+   </tr>         
+            
+     
+    
+    <tr role="row" class="odd"> 
+                    <td class="sorting_1">1</td>
+                    <td>104資訊科技股份有限公司</td>
+                    <td>2018年度研發替代役</td>
+                    <td>軟體設計工程師、Internet程式設計師</td>
+                    <td>
+                        
+                            python
+                        
+         
+      
+                </tr><tr role="row" class="even"> 
+                    <td class="sorting_1">10</td>
+                    <td>奇科系統有限公司</td>
+                    <td>Python講師</td>
+                    <td>奇科專精高階電腦教育訓練</td>
+                    <td>
+                        
+                            python
+                        
+         
+        
+          
+                </tr><tr role="row" class="odd"> 
+                    <td class="sorting_1">11</td>
+                    <td>海峰電腦股份有限公司</td>
+                    <td> 軟體設計工程師</td>
+                    <td>help to write Python programs</td>
+                    <td>
+                        
+                            python
+                        
+                            mysql
+                        
+         
+        
+                </tr><tr role="row" class="even"> 
+                    <td class="sorting_1">12</td>
+                    <td>任開數位媒體行銷股份有限公司</td>
+                    <td> 軟體設計工程師</td>
+                    <td>協助系統開發、程式管理及雲端大數據資料分析</td>
+                    <td>
+                        
+                            python
+                        
+                            django
+                        
+                            javascript
+                        
+         
+        
+
+                </tr><tr role="row" class="odd"> 
+                    <td class="sorting_1">13</td>
+                    <td>荷蘭商萊博智科技股份有限公司台灣分公司</td>
+                    <td>程式設計師</td>
+                    <td>system software development</td>
+                    <td>
+                        
+                            python
+                        
+                            mysql
+                        
+                            javascript
+                        
+         
+        
+                
+                </tr><tr role="row" class="even"> 
+                    <td class="sorting_1">14</td>
+                    <td>緯創軟體股份有限公司</td>
+                    <td>軟體設計工程師</td>
+                    <td>Developing backend services </td>
+                    <td>
+                        
+                            python
+                        
+                            mysql                        
+              
+        
+        
+                
+                </tr></tbody>
+</table>
+{% endblock %}
+
+{% block script %}
+<script>
+
+</script>
 {% endblock %}
